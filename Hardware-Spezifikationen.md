@@ -481,7 +481,8 @@ Gesamt-Durchschnitt: ~84W (100W mit Overhead)
 Verbrauch: 100W = 0.1 kW
 24/7 Betrieb: 0.1 kW × 24h × 365 Tage = 876 kWh/Jahr
 
-Strompreis (Deutschland): ~0.40 EUR/kWh (2024)
+Strompreis (Deutschland): ~0.40 EUR/kWh (Stand: Dezember 2024)
+⚠️ Hinweis: Strompreise variieren stark - prüfe deinen aktuellen Tarif!
 Jährliche Kosten: 876 × 0.40 = ~350 EUR/Jahr
 Monatlich: ~29 EUR/Monat
 

@@ -431,7 +431,7 @@ sudo nano /etc/wireguard/wg0.conf
 
 # Inhalt:
 [Interface]
-PrivateKey = [private.key Inhalt]
+PrivateKey = <DEIN_PRIVATE_KEY_HIER_EINFÜGEN>
 Address = 10.0.0.1/24
 ListenPort = 51820
 PostUp = iptables -A FORWARD -i %i -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
@@ -439,7 +439,7 @@ PostDown = iptables -D FORWARD -i %i -j ACCEPT; iptables -t nat -D POSTROUTING -
 
 # Client-Konfiguration (Beispiel)
 [Peer]
-PublicKey = [client-public-key]
+PublicKey = <CLIENT_PUBLIC_KEY_HIER_EINFÜGEN>
 AllowedIPs = 10.0.0.2/32
 
 # IP-Forwarding aktivieren
@@ -512,7 +512,7 @@ services:
     volumes:
       - grafana_data:/var/lib/grafana
     environment:
-      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_SECURITY_ADMIN_PASSWORD=<SICHERES_PASSWORT_HIER>
       - GF_USERS_ALLOW_SIGN_UP=false
     ports:
       - "3000:3000"

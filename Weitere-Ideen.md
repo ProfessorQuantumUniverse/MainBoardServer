@@ -435,6 +435,9 @@ docker run -d \
   -e 'VAULT_DEV_ROOT_TOKEN_ID=myroot' \
   vault:latest
 
+⚠️ **ACHTUNG:** Dies ist DEV-Mode! Nur für Test/Development!
+Für Produktion: https://learn.hashicorp.com/tutorials/vault/getting-started-deploy
+
 # Zentrale Passwort- und Secret-Verwaltung
 # API-Keys
 # Zertifikate
