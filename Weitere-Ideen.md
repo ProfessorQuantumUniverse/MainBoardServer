@@ -683,6 +683,66 @@ services:
 # Push-Benachrichtigungen
 ```
 
+### 7.5 n8n Workflow-Automatisierung
+
+```bash
+docker run -d \
+  --name n8n \
+  --restart=unless-stopped \
+  -p 5678:5678 \
+  -v n8n-data:/home/node/.n8n \
+  -e TZ=Europe/Berlin \
+  -e N8N_HOST=n8n.local \
+  -e N8N_PORT=5678 \
+  -e N8N_PROTOCOL=http \
+  n8nio/n8n:latest
+
+# Low-Code Workflow-Automatisierung
+# Integrationen (Home Assistant, MQTT, E-Mail, Kalender)
+# Cron-basierte und Event-basierte Flows
+```
+
+### 7.6 Nextcloud (Private Cloud)
+
+```yaml
+version: '3.8'
+
+services:
+  nextcloud:
+    image: nextcloud:stable
+    container_name: nextcloud
+    restart: unless-stopped
+    ports:
+      - "8084:80"
+    volumes:
+      - nextcloud-data:/var/www/html
+    environment:
+      - TZ=Europe/Berlin
+
+  nextcloud-db:
+    image: mariadb:11
+    container_name: nextcloud-db
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=change-me
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_PASSWORD=change-me
+    volumes:
+      - nextcloud-db:/var/lib/mysql
+
+# Private Cloud Storage
+# Datei-Sync für Desktop/Mobil
+# Kalender/Kontakte/Notes ohne Cloud-Abhängigkeit
+```
+
+### 7.7 Verteilung auf 2x Raspberry Pi 5 (4GB + 8GB)
+
+- **RPi 5 (8GB):** Home Assistant + n8n (mehr RAM für Automatisierungen/Integrationen)
+- **RPi 5 (4GB):** Nextcloud + Infrastruktur-Dienste (z. B. DNS/VPN/Monitoring)
+- **Empfehlung:** Services via Docker Compose und festen Volumes sauber trennen
+- **Backup:** Tägliche Nextcloud-Datenbank- und Konfig-Backups auf externes Storage
+
 ## 8. Machine Learning und AI
 
 ### 8.1 Jupyter Lab

@@ -1,6 +1,6 @@
 # MainBoardServer - HomeLab Projekt
 
-Willkommen zu meinem HomeLab-Projekt! Dieses Repository dokumentiert den Aufbau eines vollständigen HomeLabs mit zwei Laptop-Mainboards (Lenovo und Dell) und einem Raspberry Pi.
+Willkommen zu meinem HomeLab-Projekt! Dieses Repository dokumentiert den Aufbau eines vollständigen HomeLabs mit zwei Laptop-Mainboards (Lenovo und Dell) und zwei Raspberry Pi 5 (1x 4GB, 1x 8GB).
 
 ## 📚 Dokumentation
 
@@ -50,7 +50,7 @@ Technische Details und Hardware-Informationen:
 - **2x Laptop Mainboards** (Lenovo & Dell)
   - Docker Host (Lenovo)
   - Proxmox/Kubernetes Node (Dell)
-- **1x Raspberry Pi 4** (Gateway & Management)
+- **2x Raspberry Pi 5** (1x 4GB + 1x 8GB für Gateway, Management & Automatisierung)
 - **TP-Link 5-Port Gigabit Switch**
 - **IKEA Ivar Regal** als Rack-Basis
 - **3D-gedruckte Halterungen** für alle Komponenten
@@ -60,7 +60,7 @@ Technische Details und Hardware-Informationen:
 - **Container:** Docker, Docker Compose, Portainer
 - **Networking:** Pi-hole (DNS), WireGuard (VPN), UFW (Firewall)
 - **Monitoring:** Prometheus, Grafana, Node Exporter
-- **Optional:** Kubernetes (K3s), Home Assistant, Media Server
+- **Optional:** Kubernetes (K3s), Home Assistant, n8n, Nextcloud, Media Server
 
 ### Architektur:
 ```

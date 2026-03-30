@@ -32,7 +32,7 @@ Dieser detaillierte Guide beschreibt die komplette Software-Installation und Kon
 - **Netzwerk:** Gigabit Ethernet
 
 ### Raspberry Pi Anforderungen:
-- **Modell:** Raspberry Pi 4 (4GB oder 8GB)
+- **Modell:** 2x Raspberry Pi 5 (1x 4GB + 1x 8GB)
 - **Storage:** 32GB+ microSD Class 10 (A2 empfohlen)
 - **Zusätzlich:** Optional USB-SSD für bessere Performance
 
