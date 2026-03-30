@@ -683,6 +683,73 @@ services:
 # Push-Benachrichtigungen
 ```
 
+### 7.5 n8n Workflow-Automatisierung
+
+```bash
+docker run -d \
+  --name n8n \
+  --restart=unless-stopped \
+  -p 5678:5678 \
+  -v n8n-data:/home/node/.n8n \
+  -e TZ=Europe/Berlin \
+  -e N8N_HOST=n8n.local \
+  -e N8N_PORT=5678 \
+  -e N8N_PROTOCOL=http \
+  n8nio/n8n:1
+
+# Low-Code Workflow-Automatisierung
+# Integrationen (Home Assistant, MQTT, E-Mail, Kalender)
+# Cron-basierte und Event-basierte Flows
+```
+
+### 7.6 Nextcloud (Private Cloud)
+
+```yaml
+services:
+  nextcloud:
+    image: nextcloud:30
+    container_name: nextcloud
+    restart: unless-stopped
+    ports:
+      - "8084:80"
+    volumes:
+      - nextcloud-data:/var/www/html
+    environment:
+      - TZ=Europe/Berlin
+      - MYSQL_HOST=${MYSQL_HOST:-nextcloud-db}
+      - MYSQL_DATABASE=${MYSQL_DATABASE:-nextcloud}
+      - MYSQL_USER=${MYSQL_USER:-nextcloud}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD:?set_in_.env}
+
+  nextcloud-db:
+    image: mariadb:11
+    container_name: nextcloud-db
+    restart: unless-stopped
+    environment:
+      # WICHTIG: Passwörter NICHT so übernehmen - sichere Werte setzen (mind. 20 Zeichen, zufällig, via .env).
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:?set_in_.env}
+      - MYSQL_DATABASE=${MYSQL_DATABASE:-nextcloud}
+      - MYSQL_USER=${MYSQL_USER:-nextcloud}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD:?set_in_.env}
+    volumes:
+      - nextcloud-db:/var/lib/mysql
+
+volumes:
+  nextcloud-data:
+  nextcloud-db:
+
+# Private Cloud Storage
+# Datei-Sync für Desktop/Mobil
+# Kalender/Kontakte/Notes ohne Cloud-Abhängigkeit
+```
+
+### 7.7 Verteilung auf 2x Raspberry Pi 5 (4GB + 8GB)
+
+- **RPi 5 (8GB):** Home Assistant + n8n (mehr RAM für Automatisierungen/Integrationen)
+- **RPi 5 (4GB):** Nextcloud + Infrastruktur-Dienste (z. B. DNS/VPN/Monitoring)
+- **Empfehlung:** Services via Docker Compose und festen Volumes sauber trennen
+- **Backup:** Tägliche Nextcloud-Datenbank- und Konfig-Backups auf externes Storage
+
 ## 8. Machine Learning und AI
 
 ### 8.1 Jupyter Lab
