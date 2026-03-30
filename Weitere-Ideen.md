@@ -695,7 +695,7 @@ docker run -d \
   -e N8N_HOST=n8n.local \
   -e N8N_PORT=5678 \
   -e N8N_PROTOCOL=http \
-  n8nio/n8n:latest
+  n8nio/n8n:1
 
 # Low-Code Workflow-Automatisierung
 # Integrationen (Home Assistant, MQTT, E-Mail, Kalender)
@@ -705,11 +705,9 @@ docker run -d \
 ### 7.6 Nextcloud (Private Cloud)
 
 ```yaml
-version: '3.8'
-
 services:
   nextcloud:
-    image: nextcloud:stable
+    image: nextcloud:30
     container_name: nextcloud
     restart: unless-stopped
     ports:
@@ -718,18 +716,27 @@ services:
       - nextcloud-data:/var/www/html
     environment:
       - TZ=Europe/Berlin
+      - MYSQL_HOST=${MYSQL_HOST:-nextcloud-db}
+      - MYSQL_DATABASE=${MYSQL_DATABASE:-nextcloud}
+      - MYSQL_USER=${MYSQL_USER:-nextcloud}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD:?set_in_.env}
 
   nextcloud-db:
     image: mariadb:11
     container_name: nextcloud-db
     restart: unless-stopped
     environment:
-      - MYSQL_ROOT_PASSWORD=change-me
-      - MYSQL_DATABASE=nextcloud
-      - MYSQL_USER=nextcloud
-      - MYSQL_PASSWORD=change-me
+      # WICHTIG: Passwörter NICHT so übernehmen - sichere Werte setzen (mind. 20 Zeichen, zufällig, via .env).
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD:?set_in_.env}
+      - MYSQL_DATABASE=${MYSQL_DATABASE:-nextcloud}
+      - MYSQL_USER=${MYSQL_USER:-nextcloud}
+      - MYSQL_PASSWORD=${MYSQL_PASSWORD:?set_in_.env}
     volumes:
       - nextcloud-db:/var/lib/mysql
+
+volumes:
+  nextcloud-data:
+  nextcloud-db:
 
 # Private Cloud Storage
 # Datei-Sync für Desktop/Mobil
