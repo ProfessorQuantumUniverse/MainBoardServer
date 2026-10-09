@@ -1,3 +1,9 @@
+> [!NOTE]
+> **Archived – no longer maintained.** Documentation of a finished homelab build.
+> The code stays available for reference, but there will be no updates or security fixes.
+>
+> *Archiviert – wird nicht mehr gepflegt. Dokumentation eines abgeschlossenen Homelab-Aufbaus.*
+
 # MainBoardServer - HomeLab Projekt
 
 Willkommen zu meinem HomeLab-Projekt! Dieses Repository dokumentiert den Aufbau eines vollständigen HomeLabs mit zwei Laptop-Mainboards (Lenovo und Dell) und zwei Raspberry Pi 5 (1x 4GB, 1x 8GB).
